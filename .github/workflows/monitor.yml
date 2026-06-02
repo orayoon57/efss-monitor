@@ -1,0 +1,52 @@
+name: efss-monitor
+
+# 매월 자동 수집 → 변경 감지 → web/data 커밋(=증빙) → Vercel 자동 배포
+on:
+  schedule:
+    - cron: '0 0 1 * *'      # 매월 1일 00:00 UTC (KST 09:00). 더 자주 돌리려면 '0 0 * * 1'(매주 월) 등으로 변경
+  workflow_dispatch: {}       # 수동 실행 버튼
+
+permissions:
+  contents: write             # web/data 커밋/푸시용
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm ci
+
+      - name: Collect (법제처 OPEN API)
+        env:
+          LAW_OC: ${{ secrets.LAW_OC }}   # open.law.go.kr 등록 이메일의 @ 앞부분
+        run: npm run collect
+
+      - name: Commit evidence trail
+        run: |
+          git config user.name "efss-monitor[bot]"
+          git config user.email "efss-monitor@users.noreply.github.com"
+          git add web/data
+          git diff --cached --quiet || git commit -m "monitor: $(date -u +%Y-%m) 수집"
+          git push
+
+      # ── 이메일 발송 (선택) ────────────────────────────────────────────
+      # 사용하려면 아래 주석을 풀고 저장소 Secrets에 SMTP_* / MAIL_TO 를 등록하세요.
+      # (Gmail은 앱 비밀번호 사용. server_port 465 + secure.)
+      #
+      # - name: Email digest
+      #   uses: dawidd6/action-send-mail@v3
+      #   with:
+      #     server_address: ${{ secrets.SMTP_HOST }}
+      #     server_port: ${{ secrets.SMTP_PORT }}
+      #     secure: true
+      #     username: ${{ secrets.SMTP_USER }}
+      #     password: ${{ secrets.SMTP_PASS }}
+      #     subject: "[규정모니터] 전자금융감독규정 월간 다이제스트"
+      #     to: ${{ secrets.MAIL_TO }}
+      #     from: 규정모니터 <${{ secrets.SMTP_USER }}>
+      #     html_body: file://web/data/digest-latest.html

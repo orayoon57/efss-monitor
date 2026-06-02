@@ -1,0 +1,15 @@
+{
+  "name": "efss-monitor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "전자금융감독규정(행정규칙) 변경 모니터 — 법제처 국가법령정보 OPEN API 기반",
+  "scripts": {
+    "collect": "node collector/run.mjs",
+    "collect:mock": "MOCK=1 node collector/run.mjs"
+  },
+  "dependencies": {
+    "diff": "^5.2.0",
+    "fast-xml-parser": "^4.5.0"
+  }
+}

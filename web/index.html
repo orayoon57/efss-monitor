@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>전자금융감독규정 변경 모니터</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f5f0; --ink:#1b1a17; --muted:#76726a; --line:#ddd8cd;
+    --oxblood:#7c2d2d; --forest:#2f5d3a; --addbg:#e9f2ec; --rmbg:#fbeaea;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'IBM Plex Sans KR',sans-serif; font-weight:300;
+    -webkit-font-smoothing:antialiased; line-height:1.6;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace}
+  header.masthead{
+    border-bottom:3px double var(--oxblood);
+    padding:28px 32px 16px; max-width:1180px; margin:0 auto;
+  }
+  .kicker{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--oxblood)}
+  .masthead h1{
+    font-family:'Gowun Batang',serif; font-weight:700;
+    font-size:clamp(26px,4vw,40px); margin:6px 0 2px; letter-spacing:-.01em;
+  }
+  .masthead .sub{color:var(--muted); font-size:13px}
+  .wrap{max-width:1180px; margin:0 auto; padding:24px 32px 64px; display:grid; grid-template-columns:300px 1fr; gap:32px}
+  @media(max-width:780px){ .wrap{grid-template-columns:1fr; gap:20px} header.masthead{padding:22px 20px 14px} .wrap{padding:18px 20px 48px} }
+
+  aside h2, main h2{font-family:'Gowun Batang',serif; font-size:15px; letter-spacing:.04em; margin:0 0 12px; color:var(--ink); font-weight:700}
+  .ledger{list-style:none; margin:0; padding:0; border-top:1px solid var(--line)}
+  .ledger li{border-bottom:1px solid var(--line)}
+  .ledger button{
+    width:100%; text-align:left; background:none; border:0; cursor:pointer;
+    padding:12px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px;
+    font-family:inherit; color:inherit;
+  }
+  .ledger button:hover{background:rgba(124,45,45,.05)}
+  .ledger button[aria-current="true"]{background:rgba(124,45,45,.09); box-shadow:inset 3px 0 0 var(--oxblood)}
+  .ledger .m{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:500}
+  .badge{font-size:10.5px; letter-spacing:.04em; padding:3px 8px; border-radius:2px; white-space:nowrap; font-weight:500}
+  .b-change{background:var(--oxblood); color:#fff}
+  .b-base{background:#3a3a3a; color:#fff}
+  .b-none{background:#e7e3d8; color:var(--muted)}
+
+  .panel{border:1px solid var(--line); background:#fffdf8; padding:0}
+  .panel .head{padding:20px 24px; border-bottom:1px solid var(--line)}
+  .panel .head .t{font-family:'Gowun Batang',serif; font-size:22px; font-weight:700; margin:6px 0 0}
+  .panel .body{padding:20px 24px}
+  table.meta{width:100%; border-collapse:collapse; font-size:13.5px; margin-bottom:4px}
+  table.meta td{padding:7px 0; vertical-align:top; border-bottom:1px dotted var(--line)}
+  table.meta td.k{color:var(--muted); width:130px; font-size:12.5px}
+  table.meta td.v{font-family:'IBM Plex Mono',monospace}
+
+  .diffhead{margin:26px 0 10px; font-family:'Gowun Batang',serif; font-weight:700; font-size:14px; color:var(--oxblood)}
+  .note-review{font-size:11.5px; color:var(--muted); margin:-4px 0 12px}
+  .row{padding:9px 12px; margin:4px 0; font-size:13px; line-height:1.55; border-radius:2px}
+  .row.rm{background:var(--rmbg); border-left:3px solid var(--oxblood)}
+  .row.add{background:var(--addbg); border-left:3px solid var(--forest)}
+  .row .sign{font-family:'IBM Plex Mono',monospace; font-weight:600; margin-right:6px}
+  .row.rm .sign{color:var(--oxblood)} .row.add .sign{color:var(--forest)}
+
+  .src{display:inline-block; margin-top:22px; color:var(--oxblood); text-decoration:none; border-bottom:1px solid var(--oxblood); font-size:13px}
+  .empty{padding:48px 24px; text-align:center; color:var(--muted)}
+  .disclaimer{max-width:1180px; margin:0 auto; padding:0 32px 48px; font-size:11.5px; color:var(--muted); line-height:1.7}
+  @media(max-width:780px){ .disclaimer{padding:0 20px 40px} }
+  .disclaimer b{color:var(--ink)}
+</style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="kicker">Regulatory Change Monitor · 자율점검 증빙</div>
+    <h1>전자금융감독규정 변경 모니터</h1>
+    <div class="sub">출처: 법제처 국가법령정보 OPEN API (행정규칙) · 월간 자동 수집</div>
+  </header>
+
+  <div class="wrap">
+    <aside>
+      <h2>월간 기록</h2>
+      <ul class="ledger" id="ledger"></ul>
+    </aside>
+    <main>
+      <h2>상세</h2>
+      <div class="panel" id="panel"><div class="empty">기록을 불러오는 중…</div></div>
+    </main>
+  </div>
+
+  <div class="disclaimer">
+    이 페이지는 법제처 OPEN API에서 자동 수집한 데이터를 표시합니다. 표시된 변경 본문은 자동 추출 결과로 <b>담당자 검토가 필요</b>합니다.
+    법제처에는 <b>시행·확정된</b> 규정만 등록되므로, 예고 단계의 조기경보는 금융위 입법예고/규정변경예고 채널을 별도로 모니터링해야 합니다.
+    월간 기록과 본문 스냅샷의 변경 이력(git)은 "언제 무엇을 인지했는지"에 대한 자율점검 증빙으로 활용할 수 있습니다.
+  </div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const fmtDate = s => (s && /^\d{8}$/.test(s)) ? `${s.slice(0,4)}.${s.slice(4,6)}.${s.slice(6,8)}` : (s || '-');
+
+function badge(e){
+  if(e.baseline) return '<span class="badge b-base">기준선</span>';
+  if(e.changed)  return '<span class="badge b-change">변경 감지</span>';
+  return '<span class="badge b-none">변경 없음</span>';
+}
+
+function renderDetail(rec){
+  const m = rec.meta || {};
+  const diff = rec.changed ? `
+    <div class="diffhead">변경 본문 (자동 추출)</div>
+    <div class="note-review">아래는 직전 본문과의 자동 비교 결과입니다. 실제 영향·시행시점은 반드시 원문으로 확인하세요.</div>
+    ${(rec.diff?.removed||[]).map(l=>`<div class="row rm"><span class="sign">−</span>${esc(l)}</div>`).join('')}
+    ${(rec.diff?.added||[]).map(l=>`<div class="row add"><span class="sign">+</span>${esc(l)}</div>`).join('')}
+  ` : (rec.baseline
+        ? '<p class="note-review" style="margin-top:18px">이 달에 기준선(최초 본문)을 등록했습니다. 다음 수집부터 이 본문과 비교합니다.</p>'
+        : '<p class="note-review" style="margin-top:18px">직전 수집 대비 본문 변경이 감지되지 않았습니다.</p>');
+
+  return `
+    <div class="head">
+      ${badge(rec)}
+      <div class="t">${esc(m.행정규칙명)} <span class="mono" style="font-size:14px;color:var(--muted)">${esc(rec.month)}</span></div>
+    </div>
+    <div class="body">
+      <table class="meta">
+        <tr><td class="k">제개정구분</td><td class="v">${esc(m.제개정구분명)||'-'}</td></tr>
+        <tr><td class="k">발령</td><td class="v">${fmtDate(m.발령일자)} · 제${esc(m.발령번호)||'-'}호</td></tr>
+        <tr><td class="k">시행일자</td><td class="v">${fmtDate(m.시행일자)}</td></tr>
+        <tr><td class="k">행정규칙일련번호</td><td class="v">${esc(m.행정규칙일련번호)||'-'}</td></tr>
+        <tr><td class="k">소관부처</td><td class="v">${esc(m.소관부처명)||'-'}</td></tr>
+        <tr><td class="k">변경 항목수</td><td class="v">+${rec.addedCount||0} / −${rec.removedCount||0}</td></tr>
+        <tr><td class="k">수집시각</td><td class="v">${esc(rec.generatedAt)}</td></tr>
+      </table>
+      ${diff}
+      <a class="src" href="${esc(rec.sourceUrl)}" target="_blank" rel="noopener">법제처 본문 보기 →</a>
+    </div>`;
+}
+
+async function load(){
+  let index;
+  try{
+    index = await (await fetch('data/index.json', {cache:'no-store'})).json();
+  }catch(e){
+    $('#panel').innerHTML = '<div class="empty">data/index.json 을 불러오지 못했습니다.<br>정적 서버로 실행했는지 확인하세요.</div>';
+    return;
+  }
+  if(!index.length){ $('#panel').innerHTML = '<div class="empty">아직 수집된 기록이 없습니다.</div>'; return; }
+
+  const ledger = $('#ledger');
+  ledger.innerHTML = index.map((e,i)=>`
+    <li><button data-month="${e.month}" aria-current="${i===0}">
+      <span class="m">${esc(e.month)}</span>${badge(e)}
+    </button></li>`).join('');
+
+  async function select(month, btn){
+    [...ledger.querySelectorAll('button')].forEach(b=>b.setAttribute('aria-current', b===btn));
+    try{
+      const rec = await (await fetch(`data/monthly/${month}.json`, {cache:'no-store'})).json();
+      $('#panel').innerHTML = renderDetail(rec);
+    }catch(e){
+      $('#panel').innerHTML = `<div class="empty">${esc(month)} 기록을 불러오지 못했습니다.</div>`;
+    }
+  }
+  ledger.addEventListener('click', ev=>{
+    const btn = ev.target.closest('button'); if(!btn) return;
+    select(btn.dataset.month, btn);
+  });
+  // 최신 달 자동 선택
+  select(index[0].month, ledger.querySelector('button'));
+}
+load();
+</script>
+</body>
+</html>
