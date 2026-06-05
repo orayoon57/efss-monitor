@@ -64,7 +64,6 @@ function digestHtml(rec) {
     <tr><td style="padding:6px 0;color:#777;">소관부처</td><td>${esc(m.소관부처명) || '-'}</td></tr>
   </table>
   ${diffRows}
-  //<p style="margin-top:24px;"><a href="${esc(rec.sourceUrl)}" style="color:#7c2d2d;">법제처 본문 보기 →</a></p>
   <p style="margin-top:24px;">
     <a href="${esc(rec.sourceUrl)}" style="color:#7c2d2d;">법제처 본문 보기 →</a>
     &nbsp;&nbsp;|&nbsp;&nbsp;
