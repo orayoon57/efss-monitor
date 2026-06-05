@@ -50,3 +50,5 @@ jobs:
           to: ${{ secrets.MAIL_TO }}
           from: 규정모니터 <${{ secrets.SMTP_USER }}>
           html_body: file://web/data/digest-latest.html
+      env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
