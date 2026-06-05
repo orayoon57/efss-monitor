@@ -37,16 +37,16 @@ jobs:
       # ── 이메일 발송 (선택) ────────────────────────────────────────────
       # 사용하려면 아래 주석을 풀고 저장소 Secrets에 SMTP_* / MAIL_TO 를 등록하세요.
       # (Gmail은 앱 비밀번호 사용. server_port 465 + secure.)
-      #
-      # - name: Email digest
-      #   uses: dawidd6/action-send-mail@v3
-      #   with:
-      #     server_address: ${{ secrets.SMTP_HOST }}
-      #     server_port: ${{ secrets.SMTP_PORT }}
-      #     secure: true
-      #     username: ${{ secrets.SMTP_USER }}
-      #     password: ${{ secrets.SMTP_PASS }}
-      #     subject: "[규정모니터] 전자금융감독규정 월간 다이제스트"
-      #     to: ${{ secrets.MAIL_TO }}
-      #     from: 규정모니터 <${{ secrets.SMTP_USER }}>
-      #     html_body: file://web/data/digest-latest.html
+      
+      - name: Email digest
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.SMTP_USER }}
+          password: ${{ secrets.SMTP_PASS }}
+          subject: "[규정모니터] 전자금융감독규정 월간 다이제스트"
+          to: ${{ secrets.MAIL_TO }}
+          from: 규정모니터 <${{ secrets.SMTP_USER }}>
+          html_body: file://web/data/digest-latest.html
