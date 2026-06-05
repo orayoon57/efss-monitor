@@ -64,7 +64,6 @@ function digestHtml(rec) {
     <tr><td style="padding:6px 0;color:#777;">소관부처</td><td>${esc(m.소관부처명) || '-'}</td></tr>
   </table>
   ${diffRows}
-  <p style="margin-top:24px;"><a href="${esc(rec.sourceUrl)}" style="color:#7c2d2d;">법제처 본문 보기 →</a></p>
   <p style="font-size:11px;color:#999;margin-top:24px;border-top:1px solid #ddd;padding-top:12px;">
     이 다이제스트는 법제처 국가법령정보 OPEN API에서 자동 추출한 것으로, 변경 본문은 담당자 검토가 필요합니다.
     법제처는 <b>시행·확정된</b> 규정만 반영하므로, 예고 단계 조기경보는 금융위 입법예고 채널을 별도 모니터링하세요.
