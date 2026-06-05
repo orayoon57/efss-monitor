@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const OC = process.env.LAW_OC || 'test';
-const BASE = 'http://www.law.go.kr/DRF';
+const BASE = 'https://www.law.go.kr/DRF';
 const RULE_NAME = '전자금융감독규정';
 
 const parser = new XMLParser({
