@@ -1,5 +1,14 @@
 [
   {
+    "month": "2026-09",
+    "changed": false,
+    "baseline": false,
+    "시행일자": "20260715",
+    "일련번호": "2100000282622",
+    "제개정구분명": "일부개정",
+    "generatedAt": "2026-09-04T00:34:09.561Z"
+  },
+  {
     "month": "2026-08",
     "changed": true,
     "baseline": false,
